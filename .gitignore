@@ -1,0 +1,10 @@
+# ignore target directory and under directory
+/target/*
+# ignore .idea directory and under directory
+/.idea/*
+# Package Files 
+*.jar
+*.war
+*.ear
+# ignore .iml files
+*.iml
