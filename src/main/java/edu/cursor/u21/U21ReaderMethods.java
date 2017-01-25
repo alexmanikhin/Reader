@@ -10,7 +10,7 @@ import java.io.IOException;
 public class U21ReaderMethods implements U21ReaderMethodsInterface {
     @Override
     public void lexemesAndTokensDivider(U21Reader reader) throws IOException {
-        BufferedReader br = new BufferedReader(new FileReader(UtilityClass.chooseFilePath()));
+        BufferedReader br = new BufferedReader(new FileReader(reader.getFilePath()));
         String currentLine;
         String str;
         while ((currentLine = br.readLine()) != null) {
