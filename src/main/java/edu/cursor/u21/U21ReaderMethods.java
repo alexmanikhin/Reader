@@ -18,4 +18,23 @@ public class U21ReaderMethods implements U21ReaderMethodsInterface {
         }
         return lineCollector;
     }
+
+    @Override
+    public String[] deleteMetachAndPreposition(String str) {
+        str =" "+str+" ";
+        str = str.toLowerCase();
+        str=str.replaceAll("(`)|(~)|(!)|(@)|(#)|(\\$)|(%)|(\\^)|(&)|(\\*)|(\\()|(\\))|(-)|(_)|(=)|(\\+)|(\\[)|(\\])|" +
+                "(\\{)|(\\})|(\\|)|(')|(\")|(;)|(:)|(<)|(,)|(>)|(\\.)|(/)|(\\?)|(№)|(\\\\)"," ");
+        for(int i = 0; i<2; i++) {
+            str = str.replaceAll("( \\S )|( an )|( on )|( in )|( at )|( to )|( the )|( up )|( under )|( over )|( since )|" +
+                    "( about )|( of )|( from )|( because )|( above )|( after )|( upon )|( off )|( for )|( out )|( into )|" +
+                    "( down )|( through )|( across )|( along )|( by )|( behind )|( front )|( under )|( among )|(between)|" +
+                    "( during )|( till )|( untill )|( within )|( ago )|( before )|( past )|( accordance )|( below )|" +
+                    "( without )|( onto )|( toward )|( away )|( near )|( beside )|( will )|( is )|( that )|( be )|" +
+                    "( can )|( must )|( any )|( no )|( not )|( this )|( and )|( which )", "  ");
+        }
+        str = str.replaceAll(" +"," ");
+        str= str.replaceFirst(" ","");
+        return str.split(" ");
+    }
 }

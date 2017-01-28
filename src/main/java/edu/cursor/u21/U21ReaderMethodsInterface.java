@@ -7,4 +7,5 @@ import java.io.IOException;
  */
 public interface U21ReaderMethodsInterface {
     public String readFile(U21Reader reader) throws IOException;
+    public String [] deleteMetachAndPreposition(String str);
 }
