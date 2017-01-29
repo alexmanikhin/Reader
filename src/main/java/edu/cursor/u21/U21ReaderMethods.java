@@ -3,6 +3,7 @@ package edu.cursor.u21;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.HashMap;
 
 /**
  * Created by o.kociuta on 25.01.2017.
@@ -32,6 +33,25 @@ public class U21ReaderMethods implements U21ReaderMethodsInterface {
                 }
                 reader.getSplitWords().add(str);
             }
+        }
+    }
+
+    public void wordsStatistics(){
+
+        String arrayWords[] = {};
+        HashMap<Integer, String> m = new HashMap<>(2500, 1);
+
+        int a = 0;
+        int result;
+        for (int i = 0; i < arrayWords.length; i++){
+            for (int j = i; j < arrayWords.length; j++){
+                result = arrayWords[i].compareTo(arrayWords[j]);
+                if (result == 0){
+                    a++;
+                    m.put(a,arrayWords[i]);
+                }
+            }
+            System.out.println(m.get(arrayWords[i]) + " зустрічається " + a + " раз");
         }
     }
 }
