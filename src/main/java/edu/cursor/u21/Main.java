@@ -9,6 +9,5 @@ public class Main {
     public static void main(String[] args) throws IOException {
         ConsoleMenu menu = new ConsoleMenu();
         menu.ConsoleMenu();
-
     }
 }

@@ -10,30 +10,52 @@ import java.util.HashMap;
  */
 public class U21ReaderMethods implements U21ReaderMethodsInterface {
     @Override
-    public void lexemesAndTokensDivider(U21Reader reader) throws IOException {
+    public String readFile(U21Reader reader) throws IOException {
         BufferedReader br = new BufferedReader(new FileReader(reader.getFilePath()));
         String currentLine;
-        String str;
+        String lineCollector = "";
+        if (br.read() == -1) {
+            System.out.println("File is empty");
+            System.out.println("Overwrites text");
+            U21Reader reader1 = new U21Reader();
+            readFile(reader1);
+        } else {
+            System.out.println("File is not empty");
         while ((currentLine = br.readLine()) != null) {
-            for (int i = 0; i < currentLine.length(); i++) {
-                str = "";
-                if (currentLine.charAt(i) >= (char) (48) && currentLine.charAt(i) <= (char) (57) || currentLine.charAt(i) >= (char) (65) && currentLine.charAt(i) <= (char) (90) || currentLine.charAt(i) >= (char) (97) && currentLine.charAt(i) <= (char) (122)) {
-                    while (true) {
-                        str += currentLine.charAt(i);
-                        if (i == currentLine.length() - 1 || currentLine.charAt(i + 1) >= (char) (32) && currentLine.charAt(i + 1) <= (char) (47) || currentLine.charAt(i + 1) >= (char) (58) && currentLine.charAt(i + 1) <= (char) (64) || currentLine.charAt(i + 1) >= (char) (91) && currentLine.charAt(i + 1) <= (char) (96) || currentLine.charAt(i + 1) >= (char) (123) && currentLine.charAt(i + 1) <= (char) (126)) {
-                            break;
-                        } else {
-                            i++;
-                        }
-                    }
-                } else if (currentLine.charAt(i) != (char) (32)) {
-                    str += currentLine.charAt(i);
-                } else {
-                    continue;
-                }
-                reader.getSplitWords().add(str);
-            }
+            lineCollector += currentLine + " ";
         }
+        return lineCollector;
+    }
+
+    @Override
+    public String[] deleteMetachAndPreposition(String str) {
+        str = " " + str + " ";
+        str = str.toLowerCase();
+        str = str.replaceAll("(`)|(~)|(!)|(@)|(#)|(\\$)|(%)|(\\^)|(&)|(\\*)|(\\()|(\\))|(-)|(_)|(=)|(\\+)|(\\[)|(\\])|" +
+                "(\\{)|(\\})|(\\|)|(')|(\")|(;)|(:)|(<)|(,)|(>)|(\\.)|(/)|(\\?)|(№)|(\\\\)", " ");
+        for (int i = 0; i < 2; i++) {
+            str = str.replaceAll("( \\S )|( an )|( on )|( in )|( at )|( to )|( the )|( up )|( under )|( over )|( since )|" +
+                    "( about )|( of )|( from )|( because )|( above )|( after )|( upon )|( off )|( for )|( out )|( into )|" +
+                    "( down )|( through )|( across )|( along )|( by )|( behind )|( front )|( under )|( among )|(between)|" +
+                    "( during )|( till )|( untill )|( within )|( ago )|( before )|( past )|( accordance )|( below )|" +
+                    "( without )|( onto )|( toward )|( away )|( near )|( beside )|( will )|( is )|( that )|( be )|" +
+                    "( can )|( must )|( any )|( no )|( not )|( this )|( and )|( which )", "  ");
+        }
+        str = str.replaceAll(" +", " ");
+        str = str.replaceFirst(" ", "");
+        return str.split(" ");
+    }
+
+    @Override
+    public String[] checkOnTheNumberOfWords(String[] str) throws IOException {
+        while (str.length < 2000) {
+            U21Reader reader = new U21Reader();
+            System.out.println("The text contains less 2000 is word");
+            System.out.println("Replay file");
+            str = checkOnTheNumberOfWords(deleteMetachAndPreposition(readFile(reader)));
+        }
+        System.out.println("The file has " + str + "words");
+        return str;
     }
 
     public void wordsStatistics(){
