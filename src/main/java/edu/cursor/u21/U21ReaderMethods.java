@@ -13,6 +13,13 @@ public class U21ReaderMethods implements U21ReaderMethodsInterface {
         BufferedReader br = new BufferedReader(new FileReader(reader.getFilePath()));
         String currentLine;
         String lineCollector = "";
+        if (br.read() == -1) {
+            System.out.println("File is empty");
+            System.out.println("Overwrites text");
+            U21Reader reader1 = new U21Reader();
+            readFile(reader1);
+        } else {
+            System.out.println("File is not empty");
         while ((currentLine = br.readLine()) != null) {
             lineCollector += currentLine + " ";
         }
