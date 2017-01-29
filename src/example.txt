@@ -1,0 +1,4 @@
+test U21Reader.
+numbers - > 1 2 3 456 708
+String name = " fs!d@f$s .^d&     f "
+Symbols = !@#$%^&*()_+|}{":;?><\/"
