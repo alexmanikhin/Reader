@@ -21,6 +21,7 @@ public class U21ReaderMethods implements U21ReaderMethodsInterface {
             readFile(reader1);
         } else {
             System.out.println("File is not empty");
+        }
         while ((currentLine = br.readLine()) != null) {
             lineCollector += currentLine + " ";
         }
@@ -58,22 +59,21 @@ public class U21ReaderMethods implements U21ReaderMethodsInterface {
         return str;
     }
 
-    public void wordsStatistics(){
+    public void wordsStatistics(U21Reader reader)throws IOException{
 
-        String arrayWords[] = {};
-        HashMap<Integer, String> m = new HashMap<>(2500, 1);
+        String arrayWords[] = deleteMetachAndPreposition(readFile(reader));
+        HashMap<String, Integer> hashMap = new HashMap<>(2500, 1);
 
-        int a = 0;
-        int result;
         for (int i = 0; i < arrayWords.length; i++){
-            for (int j = i; j < arrayWords.length; j++){
-                result = arrayWords[i].compareTo(arrayWords[j]);
-                if (result == 0){
-                    a++;
-                    m.put(a,arrayWords[i]);
+            if (!hashMap.containsKey(arrayWords[i])){
+                int counter = 1;
+                hashMap.put(arrayWords[i], counter);
+                for (int j = i; j < arrayWords.length; j++) {
+                    if (0 == arrayWords[i].compareTo(arrayWords[j])) {
+                        hashMap.put(arrayWords[i], (counter++));
+                    }
                 }
             }
-            System.out.println(m.get(arrayWords[i]) + " зустрічається " + a + " раз");
         }
     }
 }
