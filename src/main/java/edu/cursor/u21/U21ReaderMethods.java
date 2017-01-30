@@ -11,6 +11,8 @@ import java.util.Objects;
  * Created by o.kociuta on 25.01.2017.
  */
 public class U21ReaderMethods implements U21ReaderMethodsInterface {
+    private String str;
+
     @Override
     public String readFile(U21Reader reader) throws IOException {
         BufferedReader br = new BufferedReader(new FileReader(reader.getFilePath()));
@@ -26,39 +28,46 @@ public class U21ReaderMethods implements U21ReaderMethodsInterface {
             while ((currentLine = br.readLine()) != null) {
                 lineCollector += currentLine + " ";
             }
+
         }
             return lineCollector;
+
         }
 
-    @Override
-    public String[] deleteMetachAndPreposition(String str) {
-        str = " " + str + " ";
-        str = str.toLowerCase();
-        str = str.replaceAll("(`)|(~)|(!)|(@)|(#)|(\\$)|(%)|(\\^)|(&)|(\\*)|(\\()|(\\))|(-)|(_)|(=)|(\\+)|(\\[)|(\\])|" +
-                "(\\{)|(\\})|(\\|)|(')|(\")|(;)|(:)|(<)|(,)|(>)|(\\.)|(/)|(\\?)|(№)|(\\\\)", " ");
-        for (int i = 0; i < 2; i++) {
-            str = str.replaceAll("( \\S )|( an )|( on )|( in )|( at )|( to )|( the )|( up )|( under )|( over )|( since )|" +
-                    "( about )|( of )|( from )|( because )|( above )|( after )|( upon )|( off )|( for )|( out )|( into )|" +
-                    "( down )|( through )|( across )|( along )|( by )|( behind )|( front )|( under )|( among )|(between)|" +
-                    "( during )|( till )|( untill )|( within )|( ago )|( before )|( past )|( accordance )|( below )|" +
-                    "( without )|( onto )|( toward )|( away )|( near )|( beside )|( will )|( is )|( that )|( be )|" +
-                    "( can )|( must )|( any )|( no )|( not )|( this )|( and )|( which )", "  ");
+        @Override
+        public String[] deleteMatchAndPreposition(String str){
+            str = " " + str + " ";
+            str = str.toLowerCase();
+            str = str.replaceAll("(`)|(~)|(!)|(@)|(#)|(\\$)|(%)|(\\^)|(&)|(\\*)|(\\()|(\\))|(-)|(_)|(=)|(\\+)|(\\[)|(\\])|" + "(\\{)|(\\})|(\\|)|(')|(\")|(;)|(:)|(<)|(,)|(>)|(\\.)|(/)|(\\?)|(№)|(\\\\)", " ");
+            for (int i = 0; i < 2; i++) {
+                str = str.replaceAll("( \\S )|( an )|( on )|( in )|( at )|( to )|( the )|( up )|( under )|( over )|( since )|" + "( about )|( of )|( from )|( because )|( above )|( after )|( upon )|( off )|( for )|( out )|( into )|" + "( down )|( through )|( across )|( along )|( by )|( behind )|( front )|( under )|( among )|(between)|" + "( during )|( till )|( untill )|( within )|( ago )|( before )|( past )|( accordance )|( below )|" + "( without )|( onto )|( toward )|( away )|( near )|( beside )|( will )|( is )|( that )|( be )|" + "( can )|( must )|( any )|( no )|( not )|( this )|( and )|( which )", "  ");
+            }
+            str = str.replaceAll(" +", " ");
+            str = str.replaceFirst(" ", "");
+            return str.split(" ");
         }
-        str = str.replaceAll(" +", " ");
-        str = str.replaceFirst(" ", "");
-        return str.split(" ");
-    }
 
-    @Override
-    public String[] checkOnTheNumberOfWords(String[] str) throws IOException {
-        while (str.length < 2000) {
-            U21Reader reader = new U21Reader();
-            System.out.println("The text contains less 2000 is word");
-            System.out.println("Replay file");
-            str = checkOnTheNumberOfWords(deleteMetachAndPreposition(readFile(reader)));
+        @Override
+        public String[] checkOnTheNumberOfWords(String[] str) throws IOException {
+            while (str.length < 2000) {
+                U21Reader reader = new U21Reader();
+                System.out.println("The text contains less 2000 is word");
+                System.out.println("Replay file");
+                str = checkOnTheNumberOfWords(deleteMatchAndPreposition(readFile(reader)));
+            }
+            System.out.println("The file has " + str + "words");
+            return str;
+
         }
-        System.out.println("The file has " + str + "words");
-        return str;
+    public int findTheNumberOfUniqueWords (String) throws IOException {
+        int number = 0;
+        FileReader file = new FileReader(" ");
+        StreamTokenizer fileTokenizer = new StreamTokenizer(file);
+        while ((fileTokenizer.nextToken()) != StreamTokenizer.TT_EOF) {
+            if (fileTokenizer.ttype == StreamTokenizer.TT_WORD)
+                number++;
+        }
+        System.out.println("Number of unique words: " + number);
     }
 
     public void findFrequencyOfWord(String word, String[] text) {
@@ -125,3 +134,8 @@ public class U21ReaderMethods implements U21ReaderMethodsInterface {
         }
     }
 }
+
+
+    }
+
+
