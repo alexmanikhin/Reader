@@ -9,4 +9,7 @@ public interface U21ReaderMethodsInterface {
     public String readFile(U21Reader reader) throws IOException;
     public String[] deleteMatchAndPreposition(String str);
     public String[] checkOnTheNumberOfWords(String[] str) throws IOException;
+    void findSimilarWords(String word, String[] text);
+    String findRootOfWord(String word);
+    void findFrequencyOfWord(String word, String[] text);
 }
