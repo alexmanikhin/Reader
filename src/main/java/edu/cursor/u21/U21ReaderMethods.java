@@ -52,7 +52,18 @@ public class U21ReaderMethods implements U21ReaderMethodsInterface {
             }
             System.out.println("The file has " + str + "words");
             return str;
+
         }
+    public int findTheNumberOfUniqueWords (String) throws IOException {
+        int number = 0;
+        FileReader file = new FileReader(" ");
+        StreamTokenizer fileTokenizer = new StreamTokenizer(file);
+        while ((fileTokenizer.nextToken()) != StreamTokenizer.TT_EOF) {
+            if (fileTokenizer.ttype == StreamTokenizer.TT_WORD)
+                number++;
+        }
+        System.out.println("Number of unique words: " + number);
+    }
 
 
     }
