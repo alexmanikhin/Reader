@@ -9,4 +9,5 @@ public interface U21ReaderMethodsInterface {
     public String readFile(U21Reader reader) throws IOException;
     public String [] deleteMetachAndPreposition(String str);
     public String [] checkOnTheNumberOfWords(String[] str) throws IOException;
+    public void wordsStatistics(U21Reader reader) throws IOException;
 }
