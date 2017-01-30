@@ -18,7 +18,7 @@ public class U21ReaderMethods implements U21ReaderMethodsInterface {
             System.out.println("File is empty");
             System.out.println("Overwrites text");
             U21Reader reader1 = new U21Reader();
-            readFile(reader1);
+            lineCollector = readFile(reader1);
         } else {
             System.out.println("File is not empty");
         }
