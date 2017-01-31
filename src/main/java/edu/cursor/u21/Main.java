@@ -7,8 +7,8 @@ import java.io.IOException;
  */
 public class Main {
     public static void main(String[] args) throws IOException {
-        ConsoleMenu menu = new ConsoleMenu();
-        menu.ConsoleMenu();
+
+        System.out.println(UtilityClass.chooseFilePath());
 
     }
 }
