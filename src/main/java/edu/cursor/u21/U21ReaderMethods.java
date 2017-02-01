@@ -1,11 +1,12 @@
 package edu.cursor.u21;
 
-import java.io.BufferedReader;
+import java.io.*;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.HashMap;
 
 /**
  * Created by o.kociuta on 25.01.2017.
@@ -28,10 +29,8 @@ public class U21ReaderMethods implements U21ReaderMethodsInterface {
             while ((currentLine = br.readLine()) != null) {
                 lineCollector += currentLine + " ";
             }
-
         }
             return lineCollector;
-
         }
 
         @Override
@@ -116,6 +115,25 @@ public class U21ReaderMethods implements U21ReaderMethodsInterface {
         return rootOfWord;
     }
 
+    public void wordsStatistics(U21Reader reader)throws IOException {
+
+        String arrayWords[] = deleteMatchAndPreposition(readFile(reader));
+        HashMap<String, Integer> hashMap = new HashMap<>(2500, 1);
+
+        for (int i = 0; i < arrayWords.length; i++) {
+            if (!hashMap.containsKey(arrayWords[i])) {
+                int counter = 1;
+                hashMap.put(arrayWords[i], counter);
+                for (int j = i; j < arrayWords.length; j++) {
+                    if (0 == arrayWords[i].compareTo(arrayWords[j])) {
+                        hashMap.put(arrayWords[i], (counter++));
+                    }
+                }
+            }
+        }
+    }
+
+
     public void findSimilarWords(String word, String[] text) {
 
         String rootOfWord = findRootOfWord(word);
@@ -134,8 +152,3 @@ public class U21ReaderMethods implements U21ReaderMethodsInterface {
         }
     }
 }
-
-
-    }
-
-

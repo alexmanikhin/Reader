@@ -12,4 +12,5 @@ public interface U21ReaderMethodsInterface {
     void findSimilarWords(String word, String[] text);
     String findRootOfWord(String word);
     void findFrequencyOfWord(String word, String[] text);
+    public void wordsStatistics(U21Reader reader) throws IOException;
 }
