@@ -18,12 +18,12 @@ public class ConsoleMenu {
         String[] r1 = methods.deleteMatchesAndPrepositions(r);
 
         System.out.println("Select:\n 1.Clean text from the characters and prepositions;\n 2.Check how many words left after clean and if we have less then 2000 words - stop the program;\n 3.Find " +
-                "unique words and show statistic (maximum and minimal number);\n 4.Enter the word and find how many times we can encounter them in the text and show the words with the same root");
+                "unique words and show statistic (maximum and minimal number);\n 4.Enter the word and find how many times we can encounter them in the text and show the words with the same root\n 5.Exit");
 
         Scanner va1 = new Scanner(System.in);
 
         boolean nextStep = true;
-        String msg = "Next action";
+//        String msg = "Next action";
 
 
             while (nextStep) {
@@ -50,17 +50,22 @@ public class ConsoleMenu {
                         methods.findRootOfWord(word);
 //                        methods.findSimilarWords(word, r1);
                         break;
+                    case 5:
+                        System.out.println("Close application");
+                        nextStep = false;
+                        break;
                     default:
                         System.out.println("This option is not available at the moment. Please, choose another");
 
                 }
+//                System.out.println(msg);
 //            }
 //                catch (NumberFormatException e){
 //                    System.err.print("Your selection can only be an integer!");
 //                }
 
         }
-            System.out.println(msg);
+
     }
 }
 
