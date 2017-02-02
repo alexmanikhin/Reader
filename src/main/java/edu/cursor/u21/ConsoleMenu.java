@@ -8,6 +8,7 @@ import java.util.Scanner;
  */
 public class ConsoleMenu {
 
+
     public void ConsoleMenu() throws IOException {
 
         U21ReaderMethods methods = new U21ReaderMethods();
@@ -26,7 +27,7 @@ public class ConsoleMenu {
 
 
             while (nextStep) {
-                try {
+//                try {
                 System.out.print(">> ");
                 int operator = va1.nextInt();
 
@@ -39,6 +40,7 @@ public class ConsoleMenu {
                         break;
                     case 3:
                         methods.findTheNumberOfUniqueWords(reader);
+                        methods.wordsStatistics(reader);
                         break;
                     case 4:
                         Scanner scanner = new Scanner(System.in);
@@ -46,14 +48,16 @@ public class ConsoleMenu {
                         String word = scanner.nextLine();
                         methods.findFrequencyOfWord(word, r1);
                         methods.findRootOfWord(word);
+//                        methods.findSimilarWords(word, r1);
                         break;
                     default:
-                        break;
+                        System.out.println("This option is not available at the moment. Please, choose another");
+
                 }
-            }
-                catch (NumberFormatException e){
-                    System.out.print("Your selection can only be an integer!");
-                }
+//            }
+//                catch (NumberFormatException e){
+//                    System.err.print("Your selection can only be an integer!");
+//                }
 
         }
             System.out.println(msg);

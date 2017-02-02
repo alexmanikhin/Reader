@@ -13,4 +13,5 @@ public interface U21ReaderMethodsInterface {
     void findTheNumberOfUniqueWords(U21Reader reader) throws IOException;
     String findRootOfWord(String word);
     void findFrequencyOfWord(String word, String[] text);
+    public void wordsStatistics(U21Reader reader) throws IOException;
 }
