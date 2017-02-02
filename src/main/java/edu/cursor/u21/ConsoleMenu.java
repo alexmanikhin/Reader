@@ -26,38 +26,37 @@ public class ConsoleMenu {
 //        String msg = "Next action";
 
 
-            while (nextStep) {
+        while (nextStep) {
 //                try {
-                System.out.print(">> ");
-                int operator = va1.nextInt();
+            System.out.print(">> ");
+            int operator = va1.nextInt();
 
-                switch (operator) {
-                    case 1:
-                        methods.deleteMatchesAndPrepositions(r);
-                        break;
-                    case 2:
-                        methods.checkOnTheNumberOfWords(r1);
-                        break;
-                    case 3:
-                        methods.findTheNumberOfUniqueWords(reader);
-                        methods.wordsStatistics(reader);
-                        break;
-                    case 4:
-                        Scanner scanner = new Scanner(System.in);
-                        System.out.println("Word:");
-                        String word = scanner.nextLine();
-                        methods.findFrequencyOfWord(word, r1);
-                        methods.findRootOfWord(word);
-//                        methods.findSimilarWords(word, r1);
-                        break;
-                    case 5:
-                        System.out.println("Close application");
-                        nextStep = false;
-                        break;
-                    default:
-                        System.out.println("This option is not available at the moment. Please, choose another");
+            switch (operator) {
+                case 1:
+                    methods.deleteMatchesAndPrepositions(r);
+                    break;
+                case 2:
+                    methods.checkOnTheNumberOfWords(r1);
+                    break;
+                case 3:
+                    methods.findTheNumberOfUniqueWords(reader);
+                    methods.wordsStatistics(reader);
+                    break;
+                case 4:
+                    Scanner scanner = new Scanner(System.in);
+                    System.out.println("Word:");
+                    String word = scanner.nextLine();
+                    methods.findFrequencyOfWord(word, r1);
+                    methods.findSimilarWords(word, r1);
+                    break;
+                case 5:
+                    System.out.println("Close application");
+                    nextStep = false;
+                    break;
+                default:
+                    System.out.println("This option is not available at the moment. Please, choose another");
 
-                }
+            }
 //                System.out.println(msg);
 //            }
 //                catch (NumberFormatException e){

@@ -12,6 +12,4 @@ public class U21Reader {
     public U21Reader() {
         this.filePath = UtilityClass.chooseFilePath();
     }
-
-
 }
