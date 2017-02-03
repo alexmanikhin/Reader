@@ -46,10 +46,10 @@ public class U21ReaderMethods implements U21ReaderMethodsInterface {
 
     @Override
     public String[] checkOnTheNumberOfWords(String[] str) throws IOException {
-        while (str.length < 2000) {
+        int minWords = 2000;
+        while (str.length < minWords) {
             U21Reader reader = new U21Reader();
-            System.out.println("The text contains less 2000 is word");
-            System.out.println("Replay file");
+            System.out.println("This text contains less than 2000 words, you need to specify the path to the new file");
             str = checkOnTheNumberOfWords(deleteMatchesAndPrepositions(readFile(reader)));
         }
         System.out.println("The file has " + str.length + " words");
