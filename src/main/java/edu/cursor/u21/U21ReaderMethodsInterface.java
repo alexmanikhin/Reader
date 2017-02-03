@@ -18,5 +18,5 @@ public interface U21ReaderMethodsInterface {
 
     void findFrequencyOfWord(String word, String[] text);
 
-    public void wordsStatistics(U21Reader reader) throws IOException;
+    public void displayWordsStatistics(U21Reader reader) throws IOException;
 }

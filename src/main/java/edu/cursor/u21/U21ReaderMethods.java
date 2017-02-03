@@ -4,10 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.StreamTokenizer;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 /**
  * Created by o.kociuta on 25.01.2017.
@@ -80,7 +77,7 @@ public class U21ReaderMethods implements U21ReaderMethodsInterface {
         System.out.printf("\nFrequency of word usage '%s' = %d\n", word, count);
     }
 
-    public void wordsStatistics(U21Reader reader) throws IOException {
+    public void displayWordsStatistics(U21Reader reader) throws IOException {
 
         String arrayWords[] = deleteMatchesAndPrepositions(readFile(reader));
         HashMap<String, Integer> hashMap = new HashMap<>(2500, 1);
@@ -95,6 +92,11 @@ public class U21ReaderMethods implements U21ReaderMethodsInterface {
                     }
                 }
             }
+        }
+        int maxValueInMap = (Collections.max(hashMap.values()));  // This will return max value in the Hashmap
+        for (Map.Entry e : hashMap.entrySet()) {
+            if ((int) e.getValue() == maxValueInMap)
+                System.out.println("Word " + e.getKey() + " was found maximum number of times: " + e.getValue());
         }
     }
 

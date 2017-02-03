@@ -40,7 +40,7 @@ public class ConsoleMenu {
                     break;
                 case 3:
                     methods.findTheNumberOfUniqueWords(reader);
-                    methods.wordsStatistics(reader);
+                    methods.displayWordsStatistics(reader);
                     break;
                 case 4:
                     Scanner scanner = new Scanner(System.in);
