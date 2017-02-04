@@ -24,4 +24,9 @@ public final class UtilityClass {
             System.out.println("Wrong Path! Repeat input!!");
         }
     }
+
+    static String scanWord() {
+        Scanner scanner = new Scanner(System.in);
+        return scanner.next();
+    }
 }
