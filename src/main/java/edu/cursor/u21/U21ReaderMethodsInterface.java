@@ -6,11 +6,11 @@ import java.io.IOException;
  * Created by o.kociuta on 25.01.2017.
  */
 public interface U21ReaderMethodsInterface {
-    public String readFile(U21Reader reader) throws IOException;
+    String readFile(U21Reader reader) throws IOException;
 
-    public String[] deleteMatchesAndPrepositions(String str);
+    String[] deleteMatchesAndPrepositions(String str);
 
-    public String[] checkOnTheNumberOfWords(String[] str) throws IOException;
+    String[] checkOnTheNumberOfWords(String[] str) throws IOException;
 
     void findSimilarWords(String word, String[] text);
 
@@ -18,5 +18,5 @@ public interface U21ReaderMethodsInterface {
 
     void findFrequencyOfWord(String word, String[] text);
 
-    public void displayWordsStatistics(U21Reader reader) throws IOException;
+    void displayWordsStatistics(U21Reader reader) throws IOException;
 }
