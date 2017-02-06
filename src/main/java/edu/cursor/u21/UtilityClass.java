@@ -14,7 +14,13 @@ public final class UtilityClass {
     public static String chooseFilePath() {
         String filePath;
         Scanner in = new Scanner(System.in);
-        System.out.println("Enter path to the file - > Example : [C:\\....\\Reader\\src\\example.txt]");
+        if (isWindows()) {
+            System.out.println("You use Windows OS.\nEnter path to the file - > Example : [C:\\....\\Reader\\src\\example.txt]");
+        } else if (isMac()) {
+            System.out.println("You use Mac OS.\nEnter path to the file - > Example : [\\Users\\.....\\example.txt");
+        } else if (isUnix()) {
+            System.out.println("You use Unix OS.\nEnter path to the file - > Example : [\\Users\\.....\\example.txt");
+        } else System.out.println("You use unknown OS.\nEnter path to the file - > ");
         while (true) {
             filePath = in.nextLine();
             if (new File(filePath).exists() && filePath.matches(".+\\.txt")) {
@@ -25,8 +31,23 @@ public final class UtilityClass {
         }
     }
 
-    static String scanWord() {
-        Scanner scanner = new Scanner(System.in);
-        return scanner.next();
+    private static boolean isWindows() {
+        String os = System.getProperty("os.name").toLowerCase();
+        return (os.contains("win"));
     }
+
+    private static boolean isMac() {
+        String os = System.getProperty("os.name").toLowerCase();
+        return (os.contains("mac"));
+    }
+
+    private static boolean isUnix() {
+        String os = System.getProperty("os.name").toLowerCase();
+        return (os.contains("nix") || os.contains("nux"));
+    }
+
+//    static String scanWord() {
+//        Scanner scanner = new Scanner(System.in);
+//        return scanner.next();
+//    }
 }

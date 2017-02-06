@@ -1,26 +1,21 @@
 package edu.cursor.u21;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.StreamTokenizer;
+import java.io.*;
 import java.util.*;
 
 /**
  * Created by o.kociuta on 25.01.2017.
  */
-public class U21ReaderMethods implements U21ReaderMethodsInterface {
+public class U21ReaderMethods {
 
-    @Override
-    public String readFile(U21Reader reader) throws IOException {
-        BufferedReader br = new BufferedReader(new FileReader(reader.getFilePath()));
+    public static String readFile() throws IOException {
+        BufferedReader br = new BufferedReader(new FileReader(UtilityClass.chooseFilePath()));
         String currentLine;
         String lineCollector = "";
         if (br.read() == -1) {
             System.out.println("File is empty");
             System.out.println("Overwrites text");
-            U21Reader reader1 = new U21Reader();
-            readFile(reader1);
+            readFile();
         } else {
 //            System.out.println("File is not empty");
             while ((currentLine = br.readLine()) != null) {
@@ -30,8 +25,7 @@ public class U21ReaderMethods implements U21ReaderMethodsInterface {
         return lineCollector;
     }
 
-    @Override
-    public String[] deleteMatchesAndPrepositions(String str) {
+    public static String[] deleteMatchesAndPrepositions(String str) {
         str = " " + str + " ";
         str = str.toLowerCase();
         str = str.replaceAll("(`)|(~)|(!)|(@)|(#)|(\\$)|(%)|(\\^)|(&)|(\\*)|(\\()|(\\))|(-)|(_)|(=)|(\\+)|(\\[)|(\\])|" + "(\\{)|(\\})|(\\|)|(')|(\")|(;)|(:)|(<)|(,)|(>)|(\\.)|(/)|(\\?)|(№)|(\\\\)", " ");
@@ -44,30 +38,29 @@ public class U21ReaderMethods implements U21ReaderMethodsInterface {
         return str.split(" ");
     }
 
-    @Override
-    public String[] checkOnTheNumberOfWords(String[] str) throws IOException {
+    public static String[] checkOnTheNumberOfWords(String[] str) throws IOException {
         int minWords = 2000;
         while (str.length < minWords) {
             System.out.println("This text contains less than 2000 words, you need to specify the path to the new file");
-            U21Reader reader = new U21Reader();
-            str = checkOnTheNumberOfWords(deleteMatchesAndPrepositions(readFile(reader)));
+            str = checkOnTheNumberOfWords(deleteMatchesAndPrepositions(readFile()));
         }
         System.out.println("The file has " + str.length + " words");
         return str;
     }
 
-    public void findTheNumberOfUniqueWords(U21Reader reader) throws IOException {
-        int number = 0;
-        BufferedReader br = new BufferedReader(new FileReader(reader.getFilePath()));
-        StreamTokenizer fileTokenizer = new StreamTokenizer(br);
-        while ((fileTokenizer.nextToken()) != StreamTokenizer.TT_EOF) {
-            if (fileTokenizer.ttype == StreamTokenizer.TT_WORD)
-                number++;
-        }
-        System.out.println("Number of unique words: " + number);
-    }
+//    DON'T WORKING!
+//    public  void findTheNumberOfUniqueWords(U21Reader reader) throws IOException {
+//        int number = 0;
+//        BufferedReader br = new BufferedReader(new FileReader(reader.getFilePath()));
+//        StreamTokenizer fileTokenizer = new StreamTokenizer(br);
+//        while ((fileTokenizer.nextToken()) != StreamTokenizer.TT_EOF) {
+//            if (fileTokenizer.ttype == StreamTokenizer.TT_WORD)
+//                number++;
+//        }
+//        System.out.println("Number of unique words: " + number);
+//    }
 
-    public void findFrequencyOfWord(String word, String[] text) {
+    public static void findFrequencyOfWord(String word, String[] text) {
         int count = 0;
         for (String s : text) {
             if (Objects.equals(s.toLowerCase(), word.toLowerCase())) {
@@ -77,9 +70,9 @@ public class U21ReaderMethods implements U21ReaderMethodsInterface {
         System.out.printf("\nFrequency of word usage '%s' = %d\n", word, count);
     }
 
-    public void displayWordsStatistics(U21Reader reader) throws IOException {
+    public static void displayWordsStatistics() throws IOException {
 
-        String arrayWords[] = deleteMatchesAndPrepositions(readFile(reader));
+        String arrayWords[] = deleteMatchesAndPrepositions(readFile());
         HashMap<String, Integer> hashMap = new HashMap<>(2500, 1);
 
         for (int i = 0; i < arrayWords.length; i++) {
@@ -100,7 +93,7 @@ public class U21ReaderMethods implements U21ReaderMethodsInterface {
         }
     }
 
-    public void findSimilarWords(String word, String[] text) {
+    public static void findSimilarWords(String word, String[] text) {
         String rootOfWord = Stemming.stemmingFactory().stripAffixes(word);
         System.out.printf("\nThe root of word: %s", rootOfWord);
         List<String> listOfSimilarWords = new ArrayList<>();
